@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TradingView Widget</title>
+    <style>
+        .widget-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .widget-frame {
+            width: 100%;
+            height: 500px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+        }
+        .widget-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .filter-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>TradingView Widget</h1>
+    <p>This is an embedded TradingView chart for multiple stocks.</p>
+
+    <!-- TradingView Widget Container -->
+    <div class="widget-container">
+
+        <!-- Apple Widget -->
+        <div class="widget-title">Apple (AAPL)</div>
+        <div class="filter-container">
+            <label for="aapl-interval">Select Interval:</label>
+            <select id="aapl-interval" onchange="updateInterval('aapl-widget', 'AAPL', this.value)">
+                <option value="D">Daily</option>
+                <option value="W">Weekly</option>
+                <option value="M">Monthly</option>
+                <option value="12M">Yearly</option>
+            </select>
+        </div>
+        <iframe id="aapl-widget" 
+            src="https://www.tradingview.com/widgetembed/?symbol=AAPL&interval=D&theme=dark&style=1&timezone=Etc%2FUTC&hide_top_toolbar=true&hide_legend=true&save_image=false&studies=%5B%5D&scale_position=right&scale_mode=Normal" 
+            class="widget-frame" 
+            allowtransparency="true">
+        </iframe>
+
+        <!-- Google Widget -->
+        <div class="widget-title">Google (GOOGL)</div>
+        <div class="filter-container">
+            <label for="googl-interval">Select Interval:</label>
+            <select id="googl-interval" onchange="updateInterval('googl-widget', 'GOOGL', this.value)">
+                <option value="D">Daily</option>
+                <option value="W">Weekly</option>
+                <option value="M">Monthly</option>
+                <option value="12M">Yearly</option>
+            </select>
+        </div>
+        <iframe id="googl-widget" 
+            src="https://www.tradingview.com/widgetembed/?symbol=GOOGL&interval=D&theme=dark&style=1&timezone=Etc%2FUTC&hide_top_toolbar=true&hide_legend=true&save_image=false&studies=%5B%5D&scale_position=right&scale_mode=Normal" 
+            class="widget-frame" 
+            allowtransparency="true">
+        </iframe>
+
+        <!-- Microsoft Widget -->
+        <div class="widget-title">Microsoft (MSFT)</div>
+        <div class="filter-container">
+            <label for="msft-interval">Select Interval:</label>
+            <select id="msft-interval" onchange="updateInterval('msft-widget', 'MSFT', this.value)">
+                <option value="D">Daily</option>
+                <option value="W">Weekly</option>
+                <option value="M">Monthly</option>
+                <option value="12M">Yearly</option>
+            </select>
+        </div>
+        <iframe id="msft-widget" 
+            src="https://www.tradingview.com/widgetembed/?symbol=MSFT&interval=D&theme=dark&style=1&timezone=Etc%2FUTC&hide_top_toolbar=true&hide_legend=true&save_image=false&studies=%5B%5D&scale_position=right&scale_mode=Normal" 
+            class="widget-frame" 
+            allowtransparency="true">
+        </iframe>
+
+    </div>
+
+    <script>
+        function updateInterval(widgetId, symbol, interval) {
+            // Construct new src URL with the updated interval
+            const newSrc = `https://www.tradingview.com/widgetembed/?symbol=${symbol}&interval=${interval}&theme=dark&style=1&timezone=Etc%2FUTC&hide_top_toolbar=true&hide_legend=true&save_image=false&studies=%5B%5D&scale_position=right&scale_mode=Normal`;
+            document.getElementById(widgetId).src = newSrc;
+        }
+    </script>
+</body>
+</html>
